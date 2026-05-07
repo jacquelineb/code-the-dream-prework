@@ -1,3 +1,20 @@
+function displayNavbar() {
+  const NAV_ITEMS = ['Artworks', 'Shop'];
+  const unorderedList = document.createElement('ul');
+  NAV_ITEMS.forEach((navItem) => {
+    const link = document.createElement('a');
+    link.href = '#'; // fix this later
+    link.textContent = navItem;
+    const listItem = document.createElement('li');
+    listItem.appendChild(link);
+    unorderedList.appendChild(listItem);
+  });
+
+  const nav = document.createElement('nav');
+  nav.appendChild(unorderedList);
+  document.body.prepend(nav);
+}
+
 const IIFE_IMAGE_SIZE = {
   SMALL: 200,
   MEDIUM: 400,
@@ -36,7 +53,7 @@ async function displayArtworks() {
     const img = document.createElement('img');
     // img.src = artwork.thumbnail.lqip;
     img.src = createImageLink(artwork.image_id);
-    img.width = '300';
+    // img.width = '300';
 
     const imgContainer = document.createElement('div');
     imgContainer.appendChild(img);
@@ -48,4 +65,6 @@ async function displayArtworks() {
   // img.width = artworks[10].thumbnail.width / 5;
   // img.height = artworks[10].thumbnail.height / 5;
 }
+
+displayNavbar();
 displayArtworks();
