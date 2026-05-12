@@ -40,35 +40,23 @@ async function getArtworks() {
   }
 }
 
-// getArtworks();
-
 async function displayArtworks() {
   const artworks = await getArtworks();
-  // const artworkContainer = document.createElement('div');
   const artworkSection = document.getElementById('artworks');
   const artworkGrid = document.createElement('div');
   artworkGrid.setAttribute('class', 'artwork_grid');
 
   artworks.forEach((artwork) => {
     const img = document.createElement('img');
-    // img.src = artwork.thumbnail.lqip;
     img.src = createImageLink(artwork.image_id);
-    // img.width = '300';
 
     const artworkContainer = document.createElement('div');
     artworkContainer.appendChild(img);
-    // const p = document.createElement('p');
-    // p.textContent = artwork.title;
-    // artworkContainer.appendChild(p);
 
     artworkContainer.setAttribute('class', 'art_container');
     artworkGrid.appendChild(artworkContainer);
   });
   artworkSection.appendChild(artworkGrid);
-  // const img = document.createElement('img');
-  // img.src = artworks[10].thumbnail.lqip;
-  // img.width = artworks[10].thumbnail.width / 5;
-  // img.height = artworks[10].thumbnail.height / 5;
 }
 
 function displayPagination() {}
