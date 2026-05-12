@@ -1,5 +1,11 @@
+html {
+  background-color: gainsboro;
+  overflow-x: hidden;
+}
+
 body {
   overflow-x: hidden;
+  margin: 0;
 }
 
 nav {
@@ -16,18 +22,37 @@ nav {
   }
 }
 
-.art_grid {
-  display: grid;
-  grid-template-columns: repeat(4, 300px);
-  justify-content: center;
-  align-items: center;
-  gap: 32px;
+.artwork_grid {
   width: 100vw;
-  padding: 16px;
+  max-width: 1000px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 auto;
+}
 
+.art_container {
+  text-align: center;
   img {
-    max-height: 300px;
-    object-fit: contain;
     display: block;
+    width: 100%;
+    margin: 0 auto;
+
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+}
+
+@media screen and (min-width: 474px) {
+  .artwork_grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .artwork_grid {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
