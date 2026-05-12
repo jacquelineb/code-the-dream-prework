@@ -27,14 +27,23 @@ nav {
   max-width: 1000px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  align-items: center;
+  /* align-items: center; */
+  align-items: start;
   justify-content: center;
-  gap: 10px;
-  margin: 0 auto;
+  row-gap: 16px;
+  column-gap: 10px;
+  margin: 16px auto;
 }
 
 .art_container {
   text-align: center;
+  .title {
+    font-style: italic;
+    font-weight: 600;
+    font-size: 16px;
+    margin: 6px 0;
+  }
+
   img {
     display: block;
     width: 100%;
@@ -54,5 +63,13 @@ nav {
 @media screen and (min-width: 768px) {
   .artwork_grid {
     grid-template-columns: repeat(4, 1fr);
+    padding: 0 16px;
+    width: calc(100vw - 32px);
+  }
+}
+
+@media screen and (min-width: 1050px) {
+  .artwork_grid {
+    column-gap: 16px;
   }
 }
