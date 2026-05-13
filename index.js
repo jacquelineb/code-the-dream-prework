@@ -1,20 +1,3 @@
-function displayNavbar() {
-  const NAV_ITEMS = ['Artworks', 'Shop'];
-  const unorderedList = document.createElement('ul');
-  NAV_ITEMS.forEach((navItem) => {
-    const link = document.createElement('a');
-    link.href = '#'; // fix this later
-    link.textContent = navItem;
-    const listItem = document.createElement('li');
-    listItem.appendChild(link);
-    unorderedList.appendChild(listItem);
-  });
-
-  const nav = document.createElement('nav');
-  nav.appendChild(unorderedList);
-  document.body.prepend(nav);
-}
-
 const IIFE_IMAGE_SIZE = {
   SMALL: 200,
   MEDIUM: 400,
@@ -69,7 +52,4 @@ async function displayArtworks() {
   artworkSection.appendChild(artworkGrid);
 }
 
-function displayPagination() {}
-
-displayNavbar();
 displayArtworks();
