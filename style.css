@@ -10,11 +10,14 @@ body {
 
 nav {
   font-size: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
 
   ul {
     display: flex;
     flex-direction: row;
     list-style-type: none;
+    padding: 0;
   }
 
   li {
@@ -22,12 +25,15 @@ nav {
   }
 }
 
+h1 {
+  text-align: center;
+}
+
 .artwork_grid {
   width: 100vw;
   max-width: 1000px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  /* align-items: center; */
   align-items: start;
   justify-content: center;
   row-gap: 16px;
