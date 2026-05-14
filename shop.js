@@ -19,42 +19,37 @@ async function fetchShop(page) {
 function createModal() {
   const modal = document.createElement('div');
   modal.setAttribute('id', 'modal');
+  const closeButton = document.createElement('button');
+  closeButton.textContent = 'Close';
+  closeButton.onclick = () => {
+    modalContainer.style.display = 'none';
+    // document.documentElement.style.overflowY = 'hidden'
+  };
+  modal.appendChild(closeButton);
 
   const modalContent = document.createElement('div');
   modalContent.setAttribute('id', 'modal_content');
   modal.appendChild(modalContent);
 
-  const closeButton = document.createElement('button');
-  closeButton.textContent = 'Close';
-  closeButton.onclick = () => {
-    modal.style.display = 'none';
-  };
-  modal.appendChild(closeButton);
-
-  modal.style.display = 'none';
-  document.getElementById('products').appendChild(modal);
+  const modalContainer = document.createElement('div');
+  modalContainer.setAttribute('id', 'modal_container');
+  modalContainer.appendChild(modal);
+  modalContainer.style.display = 'none';
+  document.getElementById('products').appendChild(modalContainer);
 }
 
 function displayProductModal(name, description) {
-  console.log('DISPLAY THIS');
-  // const modalContent = document.createElement('div');
-  // modalContent.setAttribute('class', 'modal');
-
   const productName = document.createElement('div');
   productName.textContent = name;
-  // modalContent.appendChild(productName);
 
   const productDescription = document.createElement('div');
   productDescription.innerHTML = description;
-  // modalContent.appendChild(productDescription);
 
   const modalContent = document.getElementById('modal_content');
-  // modal.innerHTML = '';
-  // modal.appendChild(productName);
-  // modal.appendChild(productDescription);
   modalContent.replaceChildren(productName, productDescription);
 
-  document.getElementById('modal').style.display = 'block';
+  document.documentElement.style.overflowY = 'hidden';
+  document.getElementById('modal_container').style.display = 'flex';
 }
 
 function displayProducts(products) {
@@ -88,6 +83,7 @@ function displayProducts(products) {
 
     const viewDescriptionBtn = document.createElement('button');
     viewDescriptionBtn.textContent = 'View description';
+    viewDescriptionBtn.setAttribute('class', 'view_product_desc');
     viewDescriptionBtn.onclick = () => {
       // console.log(product.title);
       // console.log(product.description);

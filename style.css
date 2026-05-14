@@ -66,6 +66,38 @@ h1 {
   padding: 8px;
 }
 
+#modal_container {
+  /* display: none; */
+  display: flex;
+  position: fixed;
+  z-index: 1;
+  background-color: #8a8a8a8f;
+  top: 0;
+  left: 0;
+  height: 100vh;
+
+  flex-direction: column;
+  justify-content: center;
+}
+
+#modal {
+  background-color: white;
+  margin: 12px;
+  filter: drop-shadow(0 2px 4px black);
+
+  button {
+    margin: 12px 12px 12px auto;
+    display: block;
+  }
+}
+
+#modal_content {
+  overflow-y: scroll;
+  height: 60vh;
+  position: relative;
+  padding: 16px;
+}
+
 .product_container {
   display: flex;
   flex-direction: row;
@@ -121,6 +153,10 @@ h1 {
 @media screen and (min-width: 600px) {
   .product_container .description {
     display: block;
+  }
+
+  .view_product_desc {
+    display: none;
   }
 }
 
