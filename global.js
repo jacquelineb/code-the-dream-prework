@@ -18,6 +18,28 @@ function displayNavbar() {
   document.body.prepend(nav);
 }
 
-function displayPagination() {}
+function createPagination(numPages, basePath) {
+  const gotoFirst = document.createElement('a');
+  gotoFirst.textContent = 'First';
+  gotoFirst.href = `${basePath}?page=1`;
+
+  const gotoLast = document.createElement('a');
+  gotoLast.textContent = 'Last';
+  gotoLast.href = `${basePath}?page=${numPages}`;
+
+  const params = new URLSearchParams(document.location.search);
+  let pageNumber = params.get('page');
+
+  const currentPage = document.createElement('div');
+  currentPage.textContent = `${pageNumber === null ? 1 : pageNumber} of ${numPages}`;
+
+  const pagination = document.createElement('div');
+  pagination.appendChild(gotoFirst);
+  pagination.appendChild(currentPage);
+  pagination.appendChild(gotoLast);
+  return pagination;
+}
 
 displayNavbar();
+
+export { createPagination };
