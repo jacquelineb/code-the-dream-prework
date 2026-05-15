@@ -195,6 +195,9 @@ h1 {
     padding: 0 16px;
     width: calc(100vw - 32px);
   }
+  #products {
+    padding: 16px;
+  }
 }
 
 @media screen and (min-width: 1050px) {
