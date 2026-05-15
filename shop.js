@@ -19,6 +19,8 @@ async function fetchShop(page) {
 function createModal() {
   const modal = document.createElement('div');
   modal.setAttribute('id', 'modal');
+  modal.onclick = (e) => e.stopPropagation();
+
   const closeButton = document.createElement('button');
   closeButton.title = 'Close';
   closeButton.innerHTML = `<svg viewbox= "0 0 24 24">
@@ -40,6 +42,10 @@ function createModal() {
   modalContainer.setAttribute('id', 'modal_container');
   modalContainer.appendChild(modal);
   modalContainer.style.display = 'none';
+  modalContainer.onclick = () => {
+    modalContainer.style.display = 'none';
+    document.documentElement.style.overflowY = 'scroll';
+  };
   document.getElementById('products').appendChild(modalContainer);
 }
 
