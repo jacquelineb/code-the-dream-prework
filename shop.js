@@ -126,7 +126,12 @@ function displayProducts(products) {
     createModal();
     const { products, pagination } = shop;
     displayProducts(products);
-    const paginationElement = createPagination(pagination.total_pages, 'shop.html');
+
+    const paginationElement = createPagination(
+      Number(pageNumber),
+      pagination.total_pages,
+      'shop.html',
+    );
     document.getElementById('products').appendChild(paginationElement);
   }
 })();
