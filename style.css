@@ -155,9 +155,7 @@ h1 {
 }
 
 .product_img_container {
-  /* width: 170px; */
-  min-width: 120px;
-  max-width: 150px;
+  width: 150px;
   align-self: start;
   flex-shrink: 0;
 
@@ -166,14 +164,11 @@ h1 {
   }
 }
 
-@media screen and (min-width: 400px) {
+@media screen and (min-width: 474px) {
   .product_img_container {
-    /* max-width: 170px; */
     width: 170px;
   }
-}
 
-@media screen and (min-width: 474px) {
   .artwork_grid {
     grid-template-columns: repeat(3, 1fr);
   }
