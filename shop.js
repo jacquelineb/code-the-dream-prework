@@ -62,6 +62,7 @@ function displayProductModal(name, description) {
 
   document.documentElement.style.overflowY = 'hidden';
   document.getElementById('modal_container').style.display = 'flex';
+  modalContent.scrollTop = 0;
 }
 
 function displayProducts(products) {
