@@ -96,8 +96,6 @@ function displayProducts(products) {
     viewDescriptionBtn.textContent = 'View description';
     viewDescriptionBtn.setAttribute('class', 'view_product_desc');
     viewDescriptionBtn.onclick = () => {
-      // console.log(product.title);
-      // console.log(product.description);
       displayProductModal(product.title, product.description);
     };
     productInfo.appendChild(viewDescriptionBtn);
@@ -116,7 +114,6 @@ function displayProducts(products) {
     window.location.href = window.location.href.split('?')[0];
   }
 
-  // console.log(pageNumber);
   const shop = await fetchShop(pageNumber);
   if (shop === undefined) {
     const error = document.createElement('div');
@@ -126,12 +123,7 @@ function displayProducts(products) {
     createModal();
     const { products, pagination } = shop;
     displayProducts(products);
-    // console.log(shop);
-    // displayPagination(pagination.total_pages, document.getElementById('products'));
     const paginationElement = createPagination(pagination.total_pages, 'shop.html');
     document.getElementById('products').appendChild(paginationElement);
-
-    // displayProductModal('test', 'test description');
   }
-  // */
 })();
