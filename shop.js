@@ -67,9 +67,10 @@ function displayProductModal(name, description) {
 
 function displayProducts(products) {
   products.forEach((product) => {
-    // console.log(product);
     const img = document.createElement('img');
     img.src = product.image_url;
+    img.loading = 'lazy';
+
     const productImgContainer = document.createElement('div');
     productImgContainer.setAttribute('class', 'product_img_container');
     productImgContainer.appendChild(img);
