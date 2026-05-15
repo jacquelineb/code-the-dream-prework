@@ -28,6 +28,7 @@ function createPagination(currPage, numPages, basePath) {
   const isFirstPage = currPage === 1;
   if (isFirstPage) {
     gotoPrev.setAttribute('aria-disabled', true);
+    gotoFirst.setAttribute('aria-disabled', true);
   } else {
     gotoPrev.href = `${basePath}?page=${currPage - 1}`;
   }
@@ -41,6 +42,7 @@ function createPagination(currPage, numPages, basePath) {
   const isLastPage = currPage === numPages;
   if (isLastPage) {
     gotoNext.setAttribute('aria-disabled', true);
+    gotoLast.setAttribute('aria-disabled', true);
   } else {
     gotoNext.href = `${basePath}?page=${currPage + 1}`;
   }
