@@ -20,10 +20,15 @@ function createModal() {
   const modal = document.createElement('div');
   modal.setAttribute('id', 'modal');
   const closeButton = document.createElement('button');
-  closeButton.textContent = 'Close';
+  closeButton.title = 'Close';
+  closeButton.innerHTML = `<svg viewbox= "0 0 24 24">
+                              <path d="M18 6l-12 12" />
+                              <path d="M6 6l12 12" />
+                           </svg>`;
+
   closeButton.onclick = () => {
     modalContainer.style.display = 'none';
-    // document.documentElement.style.overflowY = 'hidden'
+    document.documentElement.style.overflowY = 'scroll';
   };
   modal.appendChild(closeButton);
 
