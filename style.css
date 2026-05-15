@@ -1,6 +1,7 @@
 html {
   background-color: #faf0e6;
   overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 body {
@@ -43,6 +44,9 @@ h1 {
 
 .art_container {
   text-align: center;
+  word-break: break-word;
+  hyphens: auto;
+
   .title {
     font-style: italic;
     font-weight: 600;
