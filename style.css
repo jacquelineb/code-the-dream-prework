@@ -126,24 +126,23 @@ h1 {
   margin: 16px auto;
   border-top: 1px solid #b69a9a;
   padding-top: 8px;
+}
 
-  .description {
-    display: none;
-  }
+.product_description,
+.product_description > * {
+  display: none;
+}
 
-  button {
-    background-color: transparent;
-    border: none;
+.view_product_desc {
+  color: #00008a;
+  background-color: transparent;
+  border: none;
 
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
-  p {
-    margin: 0;
+  &:hover {
+    cursor: pointer;
   }
 }
+
 .product_name {
   font-size: 20px;
 }
@@ -178,10 +177,15 @@ h1 {
   .artwork_grid {
     grid-template-columns: repeat(3, 1fr);
   }
+
+  .product_description,
+  .product_description p:first-child {
+    display: block;
+  }
 }
 
 @media screen and (min-width: 600px) {
-  .product_container .description {
+  .product_description > * {
     display: block;
   }
 

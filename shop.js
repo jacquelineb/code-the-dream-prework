@@ -52,6 +52,7 @@ function createModal() {
 function displayProductModal(name, description) {
   const productName = document.createElement('div');
   productName.textContent = name;
+  productName.setAttribute('class', 'product_name');
 
   const productDescription = document.createElement('div');
   productDescription.innerHTML = description;
@@ -89,11 +90,11 @@ function displayProducts(products) {
 
     const description = document.createElement('div');
     description.innerHTML = product.description;
-    description.setAttribute('class', 'description');
+    description.setAttribute('class', 'product_description');
     productInfo.appendChild(description);
 
     const viewDescriptionBtn = document.createElement('button');
-    viewDescriptionBtn.textContent = 'View description';
+    viewDescriptionBtn.textContent = 'View full description';
     viewDescriptionBtn.setAttribute('class', 'view_product_desc');
     viewDescriptionBtn.onclick = () => {
       displayProductModal(product.title, product.description);
