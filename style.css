@@ -10,15 +10,18 @@ body {
 }
 
 nav {
-  font-size: 20px;
+  font-size: 18px;
   max-width: 1000px;
-  margin: 0 auto;
+  margin: 40px auto 20px;
+  border-bottom: 1px solid grey;
 
   ul {
     display: flex;
     flex-direction: row;
     list-style-type: none;
-    padding: 0;
+    padding: 16px;
+    gap: 16px;
+    justify-content: end;
   }
 
   li {
@@ -29,6 +32,7 @@ nav {
   a:visited {
     color: black;
     text-decoration: none;
+    text-transform: uppercase;
   }
 
   a:hover {
@@ -38,6 +42,7 @@ nav {
 
 h1 {
   text-align: center;
+  text-transform: uppercase;
 }
 
 .artwork_grid {
@@ -81,10 +86,8 @@ h1 {
 }
 
 #modal_container {
-  /* display: none; */
   display: flex;
   position: fixed;
-  /* z-index: 1; */
   background-color: #8a8a8a8f;
   top: 0;
   left: 0;
