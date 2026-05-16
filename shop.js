@@ -1,4 +1,4 @@
-import { createPagination } from './global.js';
+import { createPagination, getPageParameter } from './global.js';
 
 async function fetchShop(page) {
   const FIELDS_PARAMETER = `fields=${['description', 'image_url', 'title', 'max_current_price'].join(',')}`;
@@ -109,29 +109,25 @@ function displayProducts(products) {
 }
 
 (async () => {
-  const params = new URLSearchParams(document.location.search);
-  let pageNumber = params.get('page');
-  if (pageNumber === null) {
-    pageNumber = 1;
-  } else if (isNaN(Number(pageNumber)) || Number(pageNumber) <= 0) {
+  const pageNumber = getPageParameter();
+  if (pageNumber < 1) {
     window.location.href = window.location.href.split('?')[0];
-  }
-
-  const shop = await fetchShop(pageNumber);
-  if (shop === undefined) {
-    const error = document.createElement('div');
-    error.textContent = 'Unable to fetch shop data at this time.';
-    document.getElementById('products').appendChild(error);
   } else {
-    createModal();
-    const { products, pagination } = shop;
-    displayProducts(products);
-
-    const paginationElement = createPagination(
-      Number(pageNumber),
-      pagination.total_pages,
-      'shop.html',
-    );
-    document.getElementById('products').appendChild(paginationElement);
+    const shop = await fetchShop(pageNumber);
+    if (shop === undefined) {
+      const error = document.createElement('div');
+      error.textContent = 'Unable to fetch shop data at this time.';
+      document.getElementById('products').appendChild(error);
+    } else {
+      createModal();
+      const { products, pagination } = shop;
+      displayProducts(products);
+      const paginationElement = createPagination(
+        pageNumber,
+        pagination.total_pages,
+        'shop.html',
+      );
+      document.getElementById('products').appendChild(paginationElement);
+    }
   }
 })();
