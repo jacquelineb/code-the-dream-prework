@@ -69,6 +69,18 @@ function createPagination(currPage, numPages, basePath) {
   return pagination;
 }
 
+function getPageParameter() {
+  const params = new URLSearchParams(document.location.search);
+  let pageNumber = params.get('page');
+  if (pageNumber === null) {
+    return 1;
+  } else if (isNaN(Number(pageNumber)) || Number(pageNumber) <= 0) {
+    return -1;
+  }
+
+  return Number(pageNumber);
+}
+
 displayNavbar();
 
-export { createPagination };
+export { createPagination, getPageParameter };

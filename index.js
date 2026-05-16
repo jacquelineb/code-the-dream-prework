@@ -1,3 +1,5 @@
+import { createPagination, getPageParameter } from './global.js';
+
 const IIFE_IMAGE_SIZE = {
   SMALL: 200,
   MEDIUM: 400,
@@ -9,22 +11,22 @@ function createImageLink(imageId, size = IIFE_IMAGE_SIZE.MEDIUM) {
   return `https://www.artic.edu/iiif/2/${imageId}/full/${size},/0/default.jpg`;
 }
 
-async function getArtworks() {
-  const FIELDS_PARAMETER = `fields=${['id', 'title', 'api_link', 'thumbnail', 'artist_title', 'image_id'].join(',')}`;
-  const url = `https://api.artic.edu/api/v1/artworks?page=1&limit=24&${FIELDS_PARAMETER}`;
-  console.log(url);
+async function getArtworks(pageNumber) {
+  const FIELDS_PARAMETER = `fields=${['id', 'title', 'api_link', 'thumbnail', 'artist_title', 'image_id', 'pagination'].join(',')}`;
+  const url = `https://api.artic.edu/api/v1/artworks?page=${pageNumber}&limit=24&${FIELDS_PARAMETER}`;
   try {
     const response = await fetch(url);
-    const artworks = (await response.json()).data;
-    console.log(artworks);
-    return artworks;
+    const result = await response.json();
+    return {
+      artworks: result.data,
+      pagination: result.pagination,
+    };
   } catch (error) {
     console.error(error);
   }
 }
 
-async function displayArtworks() {
-  const artworks = await getArtworks();
+async function displayArtworks(artworks) {
   const artworkSection = document.getElementById('artworks');
   const artworkGrid = document.createElement('div');
   artworkGrid.setAttribute('class', 'artwork_grid');
@@ -52,4 +54,14 @@ async function displayArtworks() {
   artworkSection.appendChild(artworkGrid);
 }
 
-displayArtworks();
+(async () => {
+  const pageNumber = getPageParameter();
+  if (pageNumber < 1) {
+    window.location.href = window.location.href.split('?')[0];
+  } else {
+    const { artworks, pagination } = await getArtworks(pageNumber);
+    displayArtworks(artworks);
+    const paginationElement = createPagination(pageNumber, pagination.total_pages, '');
+    document.body.appendChild(paginationElement);
+  }
+})();
