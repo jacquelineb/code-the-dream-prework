@@ -8,18 +8,14 @@ async function fetchShop(page) {
     const result = await response.json();
     return {
       products: result.data,
-      pagination: result.pagination,
+      totalPages: result.pagination.total_pages,
     };
   } catch (error) {
     console.error(error);
   }
 }
 
-function createModal() {
-  const modal = document.createElement('div');
-  modal.setAttribute('id', 'modal');
-  modal.onclick = (e) => e.stopPropagation();
-
+function initializeModal(targetId) {
   const closeButton = document.createElement('button');
   closeButton.title = 'Close';
   closeButton.innerHTML = `<svg viewbox= "0 0 24 24">
@@ -31,11 +27,14 @@ function createModal() {
     modalContainer.style.display = 'none';
     document.documentElement.style.overflowY = 'scroll';
   };
-  modal.appendChild(closeButton);
 
   const modalContent = document.createElement('div');
   modalContent.setAttribute('id', 'modal_content');
-  modal.appendChild(modalContent);
+
+  const modal = document.createElement('div');
+  modal.setAttribute('id', 'modal');
+  modal.onclick = (e) => e.stopPropagation();
+  modal.append(closeButton, modalContent);
 
   const modalContainer = document.createElement('div');
   modalContainer.setAttribute('id', 'modal_container');
@@ -45,7 +44,7 @@ function createModal() {
     modalContainer.style.display = 'none';
     document.documentElement.style.overflowY = 'scroll';
   };
-  document.getElementById('products').appendChild(modalContainer);
+  document.getElementById(targetId).appendChild(modalContainer);
 }
 
 function displayProductModal(name, description) {
@@ -74,25 +73,17 @@ function displayProducts(products) {
     productImgContainer.setAttribute('class', 'product_img_container');
     productImgContainer.appendChild(img);
 
-    const productContainer = document.createElement('div');
-    productContainer.setAttribute('class', 'product_container');
-    productContainer.appendChild(productImgContainer);
-
-    const productInfo = document.createElement('div');
     const name = document.createElement('div');
     name.setAttribute('class', 'product_name');
     name.textContent = product.title;
-    productInfo.appendChild(name);
 
     const price = document.createElement('div');
     price.textContent = `$${product.max_current_price.toFixed(2)}`;
     price.setAttribute('class', 'price');
-    productInfo.appendChild(price);
 
     const description = document.createElement('div');
     description.innerHTML = product.description;
     description.setAttribute('class', 'product_description');
-    productInfo.appendChild(description);
 
     const viewDescriptionBtn = document.createElement('button');
     viewDescriptionBtn.textContent = 'View full description';
@@ -100,32 +91,32 @@ function displayProducts(products) {
     viewDescriptionBtn.onclick = () => {
       displayProductModal(product.title, product.description);
     };
-    productInfo.appendChild(viewDescriptionBtn);
 
-    productContainer.appendChild(productInfo);
+    const productInfo = document.createElement('div');
+    productInfo.append(name, price, description, viewDescriptionBtn);
+
+    const productContainer = document.createElement('div');
+    productContainer.setAttribute('class', 'product_container');
+    productContainer.append(productImgContainer, productInfo);
     document.getElementById('products').appendChild(productContainer);
   });
 }
 
 (async () => {
-  const pageNumber = getPageParameter();
-  if (pageNumber < 1) {
+  const currPage = getPageParameter();
+  if (currPage < 1) {
     window.location.href = window.location.href.split('?')[0];
   } else {
-    const shop = await fetchShop(pageNumber);
+    const shop = await fetchShop(currPage);
     if (shop === undefined) {
       const error = document.createElement('div');
       error.textContent = 'Unable to fetch shop data at this time.';
       document.getElementById('products').appendChild(error);
     } else {
-      createModal();
-      const { products, pagination } = shop;
+      initializeModal('products');
+      const { products, totalPages } = shop;
       displayProducts(products);
-      const paginationElement = createPagination(
-        pageNumber,
-        pagination.total_pages,
-        'shop.html',
-      );
+      const paginationElement = createPagination(currPage, totalPages, 'shop.html');
       document.getElementById('products').appendChild(paginationElement);
     }
   }
