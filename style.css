@@ -12,7 +12,7 @@ body {
 nav {
   font-size: 18px;
   max-width: 1000px;
-  margin: 40px auto 20px;
+  margin: 20px auto;
 
   ul {
     display: flex;
@@ -192,7 +192,6 @@ h1 {
   padding: 8px;
   margin-top: 40px;
   margin-bottom: 32px;
-  font-size: 18px;
 
   input {
     text-align: center;
@@ -260,5 +259,9 @@ h1 {
     .artist {
       font-size: 16px;
     }
+  }
+
+  #pagination {
+    font-size: 18px;
   }
 }
