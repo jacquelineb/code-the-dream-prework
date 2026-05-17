@@ -17,3 +17,5 @@ Next, start the server:
 `npm start`
 
 This will open the homepage of the webapp in a browser @ `localhost:3000`.
+
+For this app I chose to display data from the [Art Institute of Chicago (ARTIC) API](https://api.artic.edu/docs/). The app's homepage showcases artworks from the museum's collection. The shop page lists products available for purchase at the museum.
