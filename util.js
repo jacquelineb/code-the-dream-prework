@@ -81,6 +81,4 @@ function getPageParameter() {
   return Number(pageNumber);
 }
 
-displayNavbar();
-
-export { createPagination, getPageParameter };
+export { displayNavbar, createPagination, getPageParameter };

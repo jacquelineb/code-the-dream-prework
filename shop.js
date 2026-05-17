@@ -1,4 +1,4 @@
-import { createPagination, getPageParameter } from './global.js';
+import { displayNavbar, createPagination, getPageParameter } from './util.js';
 
 async function fetchShop(page) {
   const FIELDS_PARAMETER = `fields=${['description', 'image_url', 'title', 'max_current_price'].join(',')}`;
@@ -103,6 +103,7 @@ function displayProducts(products) {
 }
 
 (async () => {
+  displayNavbar();
   const currPage = getPageParameter();
   if (currPage < 1) {
     window.location.href = window.location.href.split('?')[0];
