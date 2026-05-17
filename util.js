@@ -81,4 +81,11 @@ function getPageParameter() {
   return Number(pageNumber);
 }
 
-export { displayNavbar, createPagination, getPageParameter };
+function displayErrorMsg(message) {
+  const errorMsg = document.createElement('div');
+  errorMsg.setAttribute('class', 'error');
+  errorMsg.textContent = message;
+  document.body.appendChild(errorMsg);
+}
+
+export { displayNavbar, createPagination, getPageParameter, displayErrorMsg };

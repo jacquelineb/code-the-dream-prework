@@ -44,6 +44,12 @@ h1 {
   text-transform: uppercase;
 }
 
+.error {
+  padding: 16px;
+  font-size: 18px;
+  text-align: center;
+}
+
 .artwork_grid {
   width: 100vw;
   max-width: 1000px;

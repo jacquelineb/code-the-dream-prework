@@ -1,4 +1,4 @@
-import { displayNavbar, createPagination, getPageParameter } from './util.js';
+import { displayNavbar, createPagination, getPageParameter, displayErrorMsg } from './util.js';
 
 async function fetchShop(page) {
   const FIELDS_PARAMETER = `fields=${['description', 'image_url', 'title', 'max_current_price'].join(',')}`;
@@ -103,22 +103,19 @@ function displayProducts(products) {
 }
 
 (async () => {
-  displayNavbar();
-  const currPage = getPageParameter();
-  if (currPage < 1) {
-    window.location.href = window.location.href.split('?')[0];
-  } else {
-    const shop = await fetchShop(currPage);
-    if (shop === undefined) {
-      const error = document.createElement('div');
-      error.textContent = 'Unable to fetch shop data at this time.';
-      document.getElementById('products').appendChild(error);
+  try {
+    displayNavbar();
+    const currPage = getPageParameter();
+    if (currPage < 1) {
+      window.location.href = window.location.href.split('?')[0];
     } else {
+      const { products, totalPages } = await fetchShop(currPage);
       initializeModal('products');
-      const { products, totalPages } = shop;
       displayProducts(products);
       const paginationElement = createPagination(currPage, totalPages, 'shop.html');
       document.getElementById('products').appendChild(paginationElement);
     }
+  } catch (error) {
+    displayErrorMsg('Unable to fetch shop data at this time.');
   }
 })();

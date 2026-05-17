@@ -1,4 +1,4 @@
-import { displayNavbar, createPagination, getPageParameter } from './util.js';
+import { displayNavbar, createPagination, getPageParameter, displayErrorMsg } from './util.js';
 
 const IIFE_IMAGE_SIZE = {
   SMALL: 200,
@@ -55,14 +55,18 @@ async function displayArtworks(artworks) {
 }
 
 (async () => {
-  displayNavbar();
-  const pageNumber = getPageParameter();
-  if (pageNumber < 1) {
-    window.location.href = window.location.href.split('?')[0];
-  } else {
-    const { artworks, pagination } = await getArtworks(pageNumber);
-    displayArtworks(artworks);
-    const paginationElement = createPagination(pageNumber, pagination.total_pages, '');
-    document.body.appendChild(paginationElement);
+  try {
+    displayNavbar();
+    const pageNumber = getPageParameter();
+    if (pageNumber < 1) {
+      window.location.href = window.location.href.split('?')[0];
+    } else {
+      const { artworks, pagination } = await getArtworks(pageNumber);
+      displayArtworks(artworks);
+      const paginationElement = createPagination(pageNumber, pagination.total_pages, '');
+      document.body.appendChild(paginationElement);
+    }
+  } catch (error) {
+    displayErrorMsg('Unable to fetch artworks at this time');
   }
 })();
