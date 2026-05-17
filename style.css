@@ -51,7 +51,7 @@ h1 {
   grid-template-columns: repeat(2, 1fr);
   align-items: start;
   justify-content: center;
-  row-gap: 16px;
+  row-gap: 20px;
   column-gap: 10px;
   margin: 16px auto;
 }
@@ -86,7 +86,6 @@ h1 {
 #products {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 8px;
 }
 
 #modal_container {
@@ -155,7 +154,7 @@ h1 {
 }
 
 .view_product_desc {
-  color: #00008a;
+  color: #003d8c;
   background-color: transparent;
   border: none;
 
@@ -244,13 +243,11 @@ h1 {
     padding: 0 16px;
     width: calc(100vw - 32px);
   }
-  #products {
-    padding: 16px;
-  }
 }
 
 @media screen and (min-width: 1050px) {
   .artwork_grid {
+    row-gap: 32px;
     column-gap: 16px;
   }
 
