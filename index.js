@@ -26,7 +26,7 @@ async function getArtworks(pageNumber) {
   }
 }
 
-async function displayArtworks(artworks) {
+function displayArtworks(artworks) {
   const artworkSection = document.getElementById('artworks');
   const artworkGrid = document.createElement('div');
   artworkGrid.setAttribute('class', 'artwork_grid');
