@@ -157,6 +157,7 @@ h1 {
 .product_description,
 .product_description > * {
   display: none;
+  padding-right: 4px;
 }
 
 .view_product_desc {
